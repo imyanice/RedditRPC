@@ -1,0 +1,66 @@
+import { RPC } from '../app/app';
+import { setIntervalAsync } from 'set-interval-async/dynamic';
+
+let isSubReddit: boolean;
+let isUser: boolean;
+let isSettings: boolean;
+let isSubmit: boolean;
+let isHome: boolean;
+let subReddit: string;
+let user: string;
+let largeImageKey: string;
+let desc_1: string;
+
+export function registerRPC() {
+    setIntervalAsync(async () => {
+        try {
+            let url = await __mainWindow.webContents.executeJavaScript(
+                `window.location.href;`
+            );
+            parseUrl(url);
+            // SONG = getSong(current, listening, remaining);
+            RPC.setActivity({
+                details: desc_1,
+                largeImageKey: largeImageKey,
+                largeImageText: "On reddit.com",
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    }, 1000);
+}
+
+function parseUrl(url: string) {
+    // Is a sub reddit ?
+    isSubReddit = url.toLowerCase().includes("/r/");
+
+    // Is viewing a user ?
+    isUser = url.toLowerCase().includes("/u/");
+    isUser = url.toLowerCase().includes("/user");
+
+    // Is viewing settings ?
+    isSettings = url.toLowerCase().includes("/settings");
+
+    // Is submitting a new post ?
+    isSubmit = url.toLowerCase().includes("/submit");
+
+    // Is viewing the home page ?
+    isHome = url.toLowerCase() == "'https://www.reddit.com'" || url.toLowerCase() == "'https://www.reddit.com/'";
+
+    if (isSubReddit) {
+        subReddit = url.split("/")[4];
+        desc_1 = "Viewing /r/" + subReddit;
+        largeImageKey = "subreddit";
+    }
+    if (isUser) {
+        user = url.split("/")[4];
+        desc_1 = "Viewing user: " + user;
+    }
+    if (isSettings) {
+        desc_1 = "Viewing settings"
+    }
+    if (isSubmit) {
+        desc_1 = "Creating a new post"
+    }
+    // console.log(`isSubReddit: ${isSubReddit} | isSettings: ${isSettings} | isSubmit: ${isSubmit} | isHome: ${isHome} | isUser: ${isUser}`);
+}
