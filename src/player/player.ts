@@ -5,10 +5,12 @@ let isSubReddit: boolean;
 let isUser: boolean;
 let isSettings: boolean;
 let isSubmit: boolean;
+let isPost: boolean;
 let isHome: boolean;
 let subReddit: string;
 let user: string;
-let largeImageKey: string;
+let largeImageKey: string = "reddit";
+let smallImageKey: string;
 let desc_1: string;
 
 export function registerRPC() {
@@ -22,7 +24,16 @@ export function registerRPC() {
             RPC.setActivity({
                 details: desc_1,
                 largeImageKey: largeImageKey,
-                largeImageText: "On reddit.com",
+                largeImageText: "Browsing Reddit",
+                smallImageKey: smallImageKey,
+                smallImageText: "Made by Yan.#0001",
+                instance: false,
+                buttons: [
+                    {
+                        "label": "View on reddit.com",
+                        "url": url,
+                    }
+                ]
             });
         } catch (e) {
             console.error(e);
@@ -44,14 +55,24 @@ function parseUrl(url: string) {
     // Is submitting a new post ?
     isSubmit = url.toLowerCase().includes("/submit");
 
+    // Is viewing a post ?
+    isPost = url.toLowerCase().includes("/comments");
+
     // Is viewing the home page ?
     isHome = url.toLowerCase() == "'https://www.reddit.com'" || url.toLowerCase() == "'https://www.reddit.com/'";
 
-    if (isSubReddit) {
+    if (isSubReddit && !isPost) {
         subReddit = url.split("/")[4];
         desc_1 = "Viewing /r/" + subReddit;
-        largeImageKey = "subreddit";
+        smallImageKey = "subreddit";
     }
+    if (isSubReddit && isPost) {
+        smallImageKey = "subreddit";
+        user = url.split("/")[6];
+        subReddit = url.split("/")[4];
+        desc_1 = "Viewing /u/" + user + " 's post on /r/" + subReddit;
+    }
+
     if (isUser) {
         user = url.split("/")[4];
         desc_1 = "Viewing user: " + user;
