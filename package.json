@@ -30,11 +30,11 @@
     },
     "mac": {
       "target": "dmg",
-      "category": "public.app-category.music"
+      "category": "public.app-category.entertainment"
     },
     "linux": {
       "target": "AppImage",
-      "category": "Audio"
+      "category": "Entertainment"
     }
   },
   "repository": {
