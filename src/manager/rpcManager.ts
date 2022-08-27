@@ -88,5 +88,4 @@ function parseUrl(url: string) {
     if (isSubmit) {
         desc_1 = "Creating a new post"
     }
-    // console.log(`isSubReddit: ${isSubReddit} | isSettings: ${isSettings} | isSubmit: ${isSubmit} | isHome: ${isHome} | isUser: ${isUser}`);
 }
