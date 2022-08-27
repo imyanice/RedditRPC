@@ -8,8 +8,7 @@
   ],
   "scripts": {
     "tsc": "tsc",
-    "package-assets": "node package-assets.js",
-    "build": "yarn run tsc && npm run package-assets",
+    "build": "yarn run tsc",
     "start": "yarn run build && electron ./build/main.js",
     "pack": "yarn run build && electron-builder --dir",
     "dist": "yarn run build && electron-builder",
@@ -47,7 +46,7 @@
     "rich",
     "presence"
   ],
-  "author": "Yan",
+  "author": "Yan.#0001",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/Braasileiro/DeezerRPC/issues"
@@ -59,7 +58,6 @@
     "@types/set-interval-async": "^1.0.0",
     "electron": "^20.1.0",
     "electron-builder": "^23.3.3",
-    "shelljs": "^0.8.5",
     "typescript": "^4.5.5"
   },
   "dependencies": {
