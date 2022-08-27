@@ -9,6 +9,7 @@
   "scripts": {
     "tsc": "tsc",
     "build": "yarn run tsc",
+    "clean": "rm -rf build && rm -rf dist",
     "start": "yarn run build && electron ./build/main.js",
     "pack": "yarn run build && electron-builder --dir",
     "dist": "yarn run build && electron-builder",
