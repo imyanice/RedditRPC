@@ -21,7 +21,7 @@ export function registerRPC() {
             );
             parseUrl(url);
             // SONG = getSong(current, listening, remaining);
-            RPC.setActivity({
+            await RPC.setActivity({
                 details: desc_1,
                 largeImageKey: largeImageKey,
                 largeImageText: "Browsing Reddit",
@@ -70,7 +70,7 @@ function parseUrl(url: string) {
         smallImageKey = "subreddit";
         user = url.split("/")[6];
         subReddit = url.split("/")[4];
-        desc_1 = "Viewing /u/" + user + " 's post on /r/" + subReddit;
+        desc_1 = "Viewing a post on /r/" + subReddit;
     }
 
     if (isHome) {

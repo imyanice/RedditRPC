@@ -18,7 +18,7 @@ function createMainWindow() {
     );
 
     // Load URL
-    __mainWindow.loadURL(APP.settings.redditUrl, { userAgent: Window.userAgent() });
+    __mainWindow.loadURL(APP.settings.redditUrl, {userAgent: Window.userAgent()}).then(() => console.log("Reddit loaded"));
 
     // Events
     __mainWindow.webContents.once('did-finish-load', () => {
