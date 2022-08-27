@@ -3,6 +3,7 @@
   "compilerOptions": {
     "lib": ["es2021", "dom"],
     "rootDir": "./src",
-    "outDir": "./build"
+    "outDir": "./build",
+    "skipLibCheck": true
   }
 }
