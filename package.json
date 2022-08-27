@@ -1,6 +1,6 @@
 {
   "name": "redditrpc",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Reddit integrated with the Discord Rich Presence.",
   "main": "build/main.js",
   "credits": [
