@@ -59,7 +59,7 @@ function parseUrl(url: string) {
     isPost = url.toLowerCase().includes("/comments");
 
     // Is viewing the home page ?
-    isHome = url.toLowerCase() == "'https://www.reddit.com'" || url.toLowerCase() == "'https://www.reddit.com/'";
+    isHome = url.toLowerCase() == "https://www.reddit.com" || url.toLowerCase() == "https://www.reddit.com/";
 
     if (isSubReddit && !isPost) {
         subReddit = url.split("/")[4];
@@ -71,6 +71,11 @@ function parseUrl(url: string) {
         user = url.split("/")[6];
         subReddit = url.split("/")[4];
         desc_1 = "Viewing /u/" + user + " 's post on /r/" + subReddit;
+    }
+
+    if (isHome) {
+        desc_1 = "Viewing the home page";
+        smallImageKey = "home"; // Icon by Icons8 https://icons8.com/
     }
 
     if (isUser) {
