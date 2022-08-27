@@ -1,6 +1,6 @@
 import { APP, RPC } from './app/app';
-import * as Player from './player/rpc';
-import * as Window from './manager/window';
+import * as Player from './manager/rpcManager';
+import * as Window from './manager/windowManager';
 import { app, dialog } from 'electron';
 
 // Entry
